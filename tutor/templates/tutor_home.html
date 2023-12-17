@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}
+Tutor Home
+{% endblock title %}
+
+{% block content %}
+<h1>Tutor Home</h1>
+<ul>
+    {% for grade in grades %}
+    <hr>
+        <li>
+            <h1>{{ grade.title }}</h1>
+            <p>{{ grade.description }}</p>
+            <h2>Units</h2>
+            <ul>
+                {% for unit in units %}
+                    <li>
+                        <h3>Unit {{ unit.unit_id }} - {{ unit.title }}</h3>
+                        <p>{{ unit.description }}</p>
+                        <h4>Problem Examples:</h4>
+                        <ul>
+                            {% for problem in problems %}
+                                {% if problem.unit_id == unit.unit_id %}
+                                    <li>
+                                        <h4>{{ problem.question }} {{ problem.expression }}?</h4>
+                                        <p>Answer: {{ problem.answer }}</p>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+</ul>
+
+{% endblock content %}
