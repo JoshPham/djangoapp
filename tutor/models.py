@@ -1,7 +1,7 @@
 from django.db import models
 
 class Grade(models.Model):
-    grade_id = models.IntegerField(default=3)
+    grade_id = models.IntegerField(default=1)
     title = models.CharField(max_length=50, null=False)
     description = models.TextField(null=True)
     units = models.ManyToManyField("Unit", related_name="related_grades")
@@ -11,7 +11,7 @@ class Grade(models.Model):
 
 class Unit(models.Model):
     grade = models.ForeignKey(Grade, on_delete=models.CASCADE, related_name="related_units", default=1)
-    unit_id = models.IntegerField()
+    unit_id = models.IntegerField(default=1)
     title = models.CharField(max_length=50, null=False)
     description = models.TextField(null=True)
     problems = models.ManyToManyField("Problem", related_name="related_units")
