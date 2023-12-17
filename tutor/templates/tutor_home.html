@@ -14,19 +14,17 @@ Tutor Home
             <p>{{ grade.description }}</p>
             <h2>Units</h2>
             <ul>
-                {% for unit in units %}
+                {% for unit in grade.units.all %}
                     <li>
                         <h3>Unit {{ unit.unit_id }} - {{ unit.title }}</h3>
                         <p>{{ unit.description }}</p>
                         <h4>Problem Examples:</h4>
                         <ul>
-                            {% for problem in problems %}
-                                {% if problem.unit_id == unit.unit_id %}
+                            {% for problem in unit.problems.all %}
                                     <li>
-                                        <h4>{{ problem.question }} {{ problem.expression }}?</h4>
-                                        <p>Answer: {{ problem.answer }}</p>
+                                        <h4>{{ problem.question }}</h4>
+                                        <p>{{ problem.answer }}</p>
                                     </li>
-                                {% endif %}
                             {% endfor %}
                         </ul>
                     </li>
